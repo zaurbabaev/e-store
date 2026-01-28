@@ -56,9 +56,43 @@ function App() {
 }
 
 function Header() {
+  const hour = new Date().getHours();
+  console.log(hour);
+
+  const openHourse = 9;
+  const closeHourse = 21;
+
+  const isOpen = hour >= openHourse && hour < closeHourse;
+
   return (
     <header>
       <h1>Electronik Store</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
+            <a href="#catalog">Catalog</a>
+          </li>
+          <li>
+            <a href="#about">About Us</a>
+          </li>
+          <li>
+            <a href="#contact ">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div>
+        {isOpen ?
+          <p>
+            We are current open. Hours: {openHourse}:00 - {closeHourse}:00 :
+          </p>
+        : <p>
+            We are closed. Open from: {openHourse}:00 - {closeHourse}:00
+          </p>
+        }
+      </div>
     </header>
   );
 }
@@ -82,7 +116,18 @@ function Catalog() {
 }
 
 function Product() {
-  return <li>Product</li>;
+  const products = [...productData];
+
+  return (
+    <li>
+      <img src={products[1].photoName} alt={products[1].name} />
+      <div>
+        <h3>{products[1].name}</h3>
+        <p>{products[1].description}</p>
+        <span>{products[1].price}</span>
+      </div>
+    </li>
+  );
 }
 
 function Footer() {
