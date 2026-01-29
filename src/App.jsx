@@ -87,7 +87,7 @@ function Header() {
       <div className="working-hours">
         {isOpen ?
           <p>
-            We are current open. Hours: {openHourse}:00 - {closeHourse}:00 :
+            We are current open. Hours: {openHourse}:00 - {closeHourse}:00
           </p>
         : <p>
             We are closed. Open from: {openHourse}:00 - {closeHourse}:00
@@ -98,34 +98,28 @@ function Header() {
   );
 }
 
-/* function Header() {
-  return React.createElement(
-    "header",
-    null,
-    React.createElement("h1", null, "Elec tronik"),
-  );
-} */
-
+// Parent
 function Catalog() {
   return (
     <main className="catalog">
       <ul className="products">
-        <Product />
+        {productData.map((p) => (
+          <Product key={p.name} {...p} />
+        ))}
       </ul>
     </main>
   );
 }
 
-function Product() {
-  const products = [...productData];
-
+// Child
+function Product({ photoName: img, name, description, price }) {
   return (
     <li className="product">
-      <img src={products[1].photoName} alt={products[1].name} />
+      <img src={img} alt={name} />
       <div>
-        <h3>{products[1].name}</h3>
-        <p>{products[1].description}</p>
-        <span>{products[1].price}</span>
+        <h3>{name}</h3>
+        <p>{description}</p>
+        <span>{price}</span>
       </div>
     </li>
   );
@@ -134,4 +128,42 @@ function Product() {
 function Footer() {
   return <footer className="footer">Footer</footer>;
 }
+/* function Header() {
+  return React.createElement(
+    "header",
+    null,
+    React.createElement("h1", null, "Elec tronik"),
+  );
+} */
+
+// statik version
+/* function Catalog() {
+  return (
+    <main className="catalog">
+      <ul className="products">
+        <Product 
+          name="Laptop Pro"
+          img="/laptop.png"
+          price={1200}
+          description="High-performance laptop for professionals."
+        />
+      </ul>
+    </main>
+  );
+} */
+
+// statik version
+/* function Product(props) {
+  return (
+    <li className="product">
+      <img src={props.img} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.description}</p>
+        <span>{props.price}</span>
+      </div>
+    </li>
+  );
+} */
+
 export default App;
