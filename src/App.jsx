@@ -112,16 +112,22 @@ function Catalog() {
 }
 
 // Child
-function Product({ photoName: img, name, description, price }) {
+function Product({ photoName: img, name, description, price, soldOut }) {
+  /* if (soldOut) return;  belədə yoxlaya bilərik bu 2ci üsudur əgər soldOut truedirsə render getməyəcək 
+  və satışda olmayan məhsul görsənməyəcək.*/
   return (
-    <li className="product">
-      <img src={img} alt={name} />
-      <div>
-        <h3>{name}</h3>
-        <p>{description}</p>
-        <span>{price}</span>
-      </div>
-    </li>
+    // 1ci üsul satılmayan məhsullar göstərilir. soldOut satılıbsa truedir. bizdə
+    // false olanları yoxlayırıq.
+    !soldOut && (
+      <li className="product">
+        <img src={img} alt={name} />
+        <div>
+          <h3>{name}</h3>
+          <p>{description}</p>
+          <span>{price}</span>
+        </div>
+      </li>
+    )
   );
 }
 
