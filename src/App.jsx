@@ -113,63 +113,20 @@ function Catalog() {
 
 // Child
 function Product({ photoName: img, name, description, price, soldOut }) {
-  /* if (soldOut) return;  belədə yoxlaya bilərik bu 2ci üsudur əgər soldOut truedirsə render getməyəcək 
-  və satışda olmayan məhsul görsənməyəcək.*/
   return (
-    // 1ci üsul satılmayan məhsullar göstərilir. soldOut satılıbsa truedir. bizdə
-    // false olanları yoxlayırıq.
-    !soldOut && (
-      <li className="product">
-        <img src={img} alt={name} />
-        <div>
-          <h3>{name}</h3>
-          <p>{description}</p>
-          <span>{price}</span>
-        </div>
-      </li>
-    )
+    <li className={`product ${soldOut ? "sold-out" : ""}`}>
+      <img src={img} alt={name} />
+      <div>
+        <h3>{name}</h3>
+        <p>{description}</p>
+        <span>{soldOut ? "SOLD OUT" : price}</span>
+      </div>
+    </li>
   );
 }
 
 function Footer() {
   return <footer className="footer">Footer</footer>;
 }
-/* function Header() {
-  return React.createElement(
-    "header",
-    null,
-    React.createElement("h1", null, "Elec tronik"),
-  );
-} */
-
-// statik version
-/* function Catalog() {
-  return (
-    <main className="catalog">
-      <ul className="products">
-        <Product 
-          name="Laptop Pro"
-          img="/laptop.png"
-          price={1200}
-          description="High-performance laptop for professionals."
-        />
-      </ul>
-    </main>
-  );
-} */
-
-// statik version
-/* function Product(props) {
-  return (
-    <li className="product">
-      <img src={props.img} alt={props.name} />
-      <div>
-        <h3>{props.name}</h3>
-        <p>{props.description}</p>
-        <span>{props.price}</span>
-      </div>
-    </li>
-  );
-} */
 
 export default App;
