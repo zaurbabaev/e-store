@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 const productData = [
   {
@@ -65,9 +66,9 @@ function Header() {
   const isOpen = hour >= openHourse && hour < closeHourse;
 
   return (
-    <header>
+    <header className="header">
       <h1>Electronik Store</h1>
-      <nav>
+      <nav className="nav">
         <ul>
           <li>
             <a href="#home">Home</a>
@@ -83,7 +84,7 @@ function Header() {
           </li>
         </ul>
       </nav>
-      <div>
+      <div className="working-hours">
         {isOpen ?
           <p>
             We are current open. Hours: {openHourse}:00 - {closeHourse}:00 :
@@ -107,8 +108,8 @@ function Header() {
 
 function Catalog() {
   return (
-    <main>
-      <ul>
+    <main className="catalog">
+      <ul className="products">
         <Product />
       </ul>
     </main>
@@ -119,7 +120,7 @@ function Product() {
   const products = [...productData];
 
   return (
-    <li>
+    <li className="product">
       <img src={products[1].photoName} alt={products[1].name} />
       <div>
         <h3>{products[1].name}</h3>
@@ -131,6 +132,6 @@ function Product() {
 }
 
 function Footer() {
-  return <footer>Footer</footer>;
+  return <footer className="footer">Footer</footer>;
 }
 export default App;
